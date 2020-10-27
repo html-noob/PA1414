@@ -1,0 +1,182 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 22px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+    background-color: black;
+    width: 100%;
+    color: white;
+    text-align: center;
+    min-height: 15%;
+    font-size: 26px;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+/*
+style for the login
+taken from geegsforgeeks: https://www.geeksforgeeks.org/html-responsive-modal-login-form/
+start:
+*/
+/*set border to the form*/ 
+      
+form { 
+    border: 3px solid #f1f1f1; 
+} 
+/*assign full width inputs*/ 
+  
+input[type=text],
+input[type=date],
+input[type=datetime],
+input[type=password] { 
+    width: 100%; 
+    padding: 12px 20px; 
+    margin: 8px 0; 
+    display: inline-block; 
+    border: 1px solid #ccc; 
+    box-sizing: border-box; 
+}
+/*set a style for the buttons*/ 
+  
+button { 
+    background-color: #4CAF50; 
+    color: white; 
+    padding: 14px 20px; 
+    margin: 8px 0; 
+    border: none; 
+    cursor: pointer; 
+    width: 100%; 
+}
+/* set a hover effect for the button*/ 
+  
+button:hover { 
+    opacity: 0.8; 
+} 
+/*centre the display image inside the container*/ 
+  
+.imgcontainer { 
+    text-align: center; 
+    margin: 24px 0 12px 0; 
+} 
+/*set image properties*/ 
+  
+img.avatar { 
+    width: 50%; 
+    border-radius: 50%; 
+} 
+/*set padding to the container*/ 
+  
+.container { 
+    padding: 16px; 
+} 
+/*set the forgot password text*/ 
+  
+span.psw { 
+    float: right; 
+    padding-top: 16px; 
+} 
+/*set styles for span and cancel button on small screens*/ 
+  
+@media screen and (max-width: 300px) { 
+    span.psw { 
+        display: block; 
+        float: none; 
+    } 
+    .cancelbtn { 
+        width: 100%; 
+    } 
+} 
+
+
+/* style for the login */
+/* taken from geegsforgeeks: https://www.geeksforgeeks.org/html-responsive-modal-login-form */
+/* ends here */
+
+
+header a {
+    color: white;
+    text-decoration: none;
+}
+header a:hover {
+    text-decoration: underline;
+}
+
+footer{
+    background-color: black;
+    width: 100%;
+    color: white;
+    height: 10%;
+    flex: none;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.lob {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  /*optional*/
+  /*font-family: arial, sans-serif;*/
+  /*input has OS specific font-family*/
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  width: auto;
+  font-size: 26px;
+}
+.lob:hover {
+    text-decoration: underline;
+}
+
+#lob-form {
+    display: inline;
+    border: none;
+}
+
+/*input[type=date]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    color: transparent;
+    background: transparent;
+}*/
+
+.my-table, people-invited {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.my-table, .my-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.my-table tr:nth-child(even){background-color: #f2f2f2;}
+
+.my-table tr:hover {background-color: #ddd;}
+
+.my-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}

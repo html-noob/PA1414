@@ -1,0 +1,6 @@
+jag har inte skyddat mig mot SQLINJECTION. fixa genom att implementera prepared-statements
+kolla hur det ser ut på mobilen
+bör kolla så att inputset är okej innan jag lägger in dem i databasen
+
+göra så att man har åtkomst till sina event man har gjort efter man har loggat in
+
