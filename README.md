@@ -18,5 +18,11 @@ place the repository under the htdocs folder
 
 open up xampp
 start Apache and MySQL
-open a browser and write: http://localhost/project/php/index.php
+open a browser and go to: http://localhost/phpmyadmin
+in the left taskbar, click on the correct repository (mine is called project)
+click on SQL (located on the upper left)
+copy-paste everything from the file called ddl.sql (located in subfolder databas)
+click run (located in the bottom right)
+
+open a browser and go to: http://localhost/project/php/index.php
 then it should be clear how to use the web-scheduler
