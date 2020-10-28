@@ -21,6 +21,7 @@ start Apache and MySQL
 open a browser and go to: http://localhost/phpmyadmin
 in the left taskbar, click on the correct repository (mine is called project)
 click on SQL (located on the upper left)
+copy-paste everything from the file called database.sql (located in subfolder databas)
 copy-paste everything from the file called ddl.sql (located in subfolder databas)
 click run (located in the bottom right)
 
