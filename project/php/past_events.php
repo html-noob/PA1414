@@ -22,197 +22,232 @@
         <?php
             if (isset($_SESSION['userID']))
             {
+                $control1 = True;
+                $control2 = True;
+                $control3 = True;
+                $control4 = True;
+                
+                
                 //you are logged in here
-                echo "
-                    <h1>Your upcoming events</h1>
-                    <br>
-                ";
                 $host_number = htmlspecialchars($_GET['id']);
                 $sql = "SELECT email FROM users WHERE user_id = $host_number;";
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_array($result);
                 $logged_in_email = $row['email'];
                 
-                
-                //the events that the user is hosting which are coming in the future:
-                echo "
-                    <table class='my-table'>
-                      <tr>
-                        <th>event-host</th>
-                        <th>preferred time</th>
-                        <th>event location</th> 
-                        <th>additional information</th>
-                        <th>people invited</th>
-                        <th>preferred time</th>
-                      </tr>
-                    ";
-                    
                 $sql = "SELECT * FROM event_view WHERE host_id = '$host_number' AND event_time > current_timestamp();";
                 $result = mysqli_query($conn, $sql);
-                while ($row = mysqli_fetch_array($result))
+                
+                if (mysqli_num_rows($result) != 0)
                 {
-                    //$creator_id = $row['creator_id'];
-                    $host_email = $row['host_email'];
-                    $date_time = $row['event_time'];
-                    $event_location = $row['event_location'];
-                    $event_additional_info = $row['event_additional_info'];
-                    $person_invited = $row['invited_email'];
-                    $preferred_time = $row['preferred_time'];
-                
+                    $control1 = False;
                     echo "
-                        <tr>
-                            <td>{$host_email}</td>
-                            <td>{$date_time}</td>
-                            <td>{$event_location}</td>
-                            <td>{$event_additional_info}</td>
-                            <td>{$person_invited}</td>
-                            <td>{$preferred_time}</td>
-                        </tr>
-                        ";
-                }
-                echo "
-                    </table>
-                    <br>";
-                    
-                //the past events that the user is hosting
-                echo "
-                    <h1>Your past events</h1>
-                    <br>
-                ";
-                
-                
-                echo "
-                    <table class='my-table'>
-                      <tr>
-                        <th>event-host</th>
-                        <th>preferred time</th>
-                        <th>event location</th> 
-                        <th>additional information</th>
-                        <th>people invited</th>
-                        <th>preferred time</th>
-                      </tr>
+                        <h1>Your upcoming events</h1>
+                        <br>
                     ";
                     
+                    
+                    //the events that the user is hosting which are coming in the future:
+                    echo "
+                        <table class='my-table'>
+                          <tr>
+                            <th>event-host</th>
+                            <th>preferred time</th>
+                            <th>event location</th> 
+                            <th>additional information</th>
+                            <th>people invited</th>
+                            <th>preferred time</th>
+                          </tr>
+                        ";
+                        
+                    
+                    while ($row = mysqli_fetch_array($result))
+                    {
+                        //$creator_id = $row['creator_id'];
+                        $host_email = $row['host_email'];
+                        $date_time = $row['event_time'];
+                        $event_location = $row['event_location'];
+                        $event_additional_info = $row['event_additional_info'];
+                        $person_invited = $row['invited_email'];
+                        $preferred_time = $row['preferred_time'];
+                    
+                        echo "
+                            <tr>
+                                <td>{$host_email}</td>
+                                <td>{$date_time}</td>
+                                <td>{$event_location}</td>
+                                <td>{$event_additional_info}</td>
+                                <td>{$person_invited}</td>
+                                <td>{$preferred_time}</td>
+                            </tr>
+                            ";
+                    }
+                    echo "
+                        </table>
+                        <br>";
+                }    
+                //the past events that the user is hosting
+                
                 $sql = "SELECT * FROM event_view WHERE host_id = '$host_number' AND event_time < current_timestamp();";
                 $result = mysqli_query($conn, $sql);
-                while ($row = mysqli_fetch_array($result))
+                
+                if (mysqli_num_rows($result) != 0)
                 {
-                    //$creator_id = $row['creator_id'];
-                    $host_email = $row['host_email'];
-                    $date_time = $row['event_time'];
-                    $event_location = $row['event_location'];
-                    $event_additional_info = $row['event_additional_info'];
-                    $person_invited = $row['invited_email'];
-                    $preferred_time = $row['preferred_time'];
-                
+                    $control2 = False;
                     echo "
-                        <tr>
-                            <td>{$host_email}</td>
-                            <td>{$date_time}</td>
-                            <td>{$event_location}</td>
-                            <td>{$event_additional_info}</td>
-                            <td>{$person_invited}</td>
-                            <td>{$preferred_time}</td>
-                        </tr>
-                        ";
-                }
-                echo "
-                    </table>
-                    <br>";
-                    
-                //upcoming events that the logged in user has been invited to
-                echo "
-                    <h1>Upcoming events</h1>
-                    <br>
-                ";
-                
-                
-                echo "
-                    <table class='my-table'>
-                      <tr>
-                        <th>event-host</th>
-                        <th>preferred time</th>
-                        <th>event location</th> 
-                        <th>additional information</th>
-                        <th>people invited</th>
-                        <th>preferred time</th>
-                      </tr>
+                        <h1>Your past events</h1>
+                        <br>
                     ";
+                    
+                    
+                    echo "
+                        <table class='my-table'>
+                          <tr>
+                            <th>event-host</th>
+                            <th>preferred time</th>
+                            <th>event location</th> 
+                            <th>additional information</th>
+                            <th>people invited</th>
+                            <th>preferred time</th>
+                          </tr>
+                        ";
+                        
+                    while ($row = mysqli_fetch_array($result))
+                    {
+                        //$creator_id = $row['creator_id'];
+                        $host_email = $row['host_email'];
+                        $date_time = $row['event_time'];
+                        $event_location = $row['event_location'];
+                        $event_additional_info = $row['event_additional_info'];
+                        $person_invited = $row['invited_email'];
+                        $preferred_time = $row['preferred_time'];
+                    
+                        echo "
+                            <tr>
+                                <td>{$host_email}</td>
+                                <td>{$date_time}</td>
+                                <td>{$event_location}</td>
+                                <td>{$event_additional_info}</td>
+                                <td>{$person_invited}</td>
+                                <td>{$preferred_time}</td>
+                            </tr>
+                            ";
+                    }
+                    echo "
+                        </table>
                 
-                // I WANT LOGGED IN USERS's EMAIL. I GOT THEIR ID
+                    <br>";
+                }    
+                //upcoming events that the logged in user has been invited to
+                
                 $sql = "SELECT * FROM event_view WHERE invited_email = '$logged_in_email' AND event_time > current_timestamp();";
                 $result = mysqli_query($conn, $sql);
-                while ($row = mysqli_fetch_array($result))
+                
+                if (mysqli_num_rows($result) != 0)
                 {
-                    //$creator_id = $row['creator_id'];
-                    $host_email = $row['host_email'];
-                    $date_time = $row['event_time'];
-                    $event_location = $row['event_location'];
-                    $event_additional_info = $row['event_additional_info'];
-                    $person_invited = $row['invited_email'];
-                    $preferred_time = $row['preferred_time'];
+                    $control3 = False;
                 
                     echo "
-                        <tr>
-                            <td>{$host_email}</td>
-                            <td>{$date_time}</td>
-                            <td>{$event_location}</td>
-                            <td>{$event_additional_info}</td>
-                            <td>{$person_invited}</td>
-                            <td>{$preferred_time}</td>
-                        </tr>
-                        ";
-                }
-                echo "
-                    </table>
-                    <br>";
-                    
-                //past events that the logged in user has been invited to
-                echo "
-                    <h1>Past events</h1>
-                    <br>
-                ";
-                
-                echo "
-                    <table class='my-table'>
-                      <tr>
-                        <th>event-host</th>
-                        <th>preferred time</th>
-                        <th>event location</th> 
-                        <th>additional information</th>
-                        <th>people invited</th>
-                        <th>preferred time</th>
-                      </tr>
+                        <h1>Upcoming events</h1>
+                        <br>
                     ";
                     
+                    
+                    echo "
+                        <table class='my-table'>
+                          <tr>
+                            <th>event-host</th>
+                            <th>preferred time</th>
+                            <th>event location</th> 
+                            <th>additional information</th>
+                            <th>people invited</th>
+                            <th>preferred time</th>
+                          </tr>
+                        ";
+                    
+                    
+                    while ($row = mysqli_fetch_array($result))
+                    {
+                        //$creator_id = $row['creator_id'];
+                        $host_email = $row['host_email'];
+                        $date_time = $row['event_time'];
+                        $event_location = $row['event_location'];
+                        $event_additional_info = $row['event_additional_info'];
+                        $person_invited = $row['invited_email'];
+                        $preferred_time = $row['preferred_time'];
+                    
+                        echo "
+                            <tr>
+                                <td>{$host_email}</td>
+                                <td>{$date_time}</td>
+                                <td>{$event_location}</td>
+                                <td>{$event_additional_info}</td>
+                                <td>{$person_invited}</td>
+                                <td>{$preferred_time}</td>
+                            </tr>
+                            ";
+                    }
+                    echo "
+                        </table>
+                        <br>";
+                }
+                    
+                //past events that the logged in user has been invited to
+                
                 $sql = "SELECT * FROM event_view WHERE invited_email = '$logged_in_email' AND event_time < current_timestamp();";
                 $result = mysqli_query($conn, $sql);
-                while ($row = mysqli_fetch_array($result))
+                if (mysqli_num_rows($result) != 0)
                 {
-                    //$creator_id = $row['creator_id'];
-                    $host_email = $row['host_email'];
-                    $date_time = $row['event_time'];
-                    $event_location = $row['event_location'];
-                    $event_additional_info = $row['event_additional_info'];
-                    $person_invited = $row['invited_email'];
-                    $preferred_time = $row['preferred_time'];
-                
+                    $control4 = False;
+                    
                     echo "
-                        <tr>
-                            <td>{$host_email}</td>
-                            <td>{$date_time}</td>
-                            <td>{$event_location}</td>
-                            <td>{$event_additional_info}</td>
-                            <td>{$person_invited}</td>
-                            <td>{$preferred_time}</td>
-                        </tr>
+                        <h1>Past events</h1>
+                        <br>
+                    ";
+                    
+                    echo "
+                        <table class='my-table'>
+                          <tr>
+                            <th>event-host</th>
+                            <th>preferred time</th>
+                            <th>event location</th> 
+                            <th>additional information</th>
+                            <th>people invited</th>
+                            <th>preferred time</th>
+                          </tr>
                         ";
-                }
-                echo "
-                    </table>
-                    <br>;
+                        
+                    while ($row = mysqli_fetch_array($result))
+                    {
+                        //$creator_id = $row['creator_id'];
+                        $host_email = $row['host_email'];
+                        $date_time = $row['event_time'];
+                        $event_location = $row['event_location'];
+                        $event_additional_info = $row['event_additional_info'];
+                        $person_invited = $row['invited_email'];
+                        $preferred_time = $row['preferred_time'];
+                    
+                        echo "
+                            <tr>
+                                <td>{$host_email}</td>
+                                <td>{$date_time}</td>
+                                <td>{$event_location}</td>
+                                <td>{$event_additional_info}</td>
+                                <td>{$person_invited}</td>
+                                <td>{$preferred_time}</td>
+                            </tr>
+                            ";
+                    }
+                    echo "
+                        </table>
+                        <br>
                 
-                </div>";
+                    </div>";
+                }
+                    if ($control1 == True && $control2 == True && $control3 == True && $control4 == True)
+                    {
+                        echo "You have no events";
+                    }
         
                 
             } else
